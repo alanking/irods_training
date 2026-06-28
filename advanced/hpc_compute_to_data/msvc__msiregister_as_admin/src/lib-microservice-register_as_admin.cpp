@@ -42,15 +42,17 @@ msiregister_as_admin( msParam_t *inpParam1, msParam_t *inpParam2,
          return rei->status;
      }
   
+     const char* dest_resc_name_kw = DEST_RESC_NAME_KW;
      if ( ( rei->status = parseMspForCondInp( inpParam2, &myDataObjInp->condInput,
-                          DEST_RESC_NAME_KW ) ) < 0 ) {
+                          const_cast<char*>(dest_resc_name_kw) ) ) < 0 ) {
          rodsLogAndErrorMsg( LOG_ERROR, &rsComm->rError, rei->status,
                              "msiPhyPathReg: input inpParam2 error. status = %d", rei->status );
          return rei->status;
      }
   
+     const char* file_path_kw = FILE_PATH_KW;
      if ( ( rei->status = parseMspForCondInp( inpParam3, &myDataObjInp->condInput,
-                          FILE_PATH_KW ) ) < 0 ) {
+                          const_cast<char*>(file_path_kw) ) ) < 0 ) {
          rodsLogAndErrorMsg( LOG_ERROR, &rsComm->rError, rei->status,
                              "msiPhyPathReg: input inpParam3 error. status = %d", rei->status );
          return rei->status;
